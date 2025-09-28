@@ -1,0 +1,291 @@
+/* --- General Setup & Font --- */
+:root {
+    --primary-color: #6a44ff;
+    --dark-bg: #0b0b0f;
+    --light-text: #e0e0e0;
+    --dark-text: #1a1a1a;
+    --card-bg: #1a1a1f;
+    --border-color: #333338;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* --- Animated Gradient Background --- */
+.background-gradient {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at 20% 20%, #4f2db5, transparent 30%),
+                radial-gradient(circle at 80% 70%, #2d6ab5, transparent 30%);
+    filter: blur(100px);
+    z-index: -1;
+    animation: moveGradient 15s infinite alternate ease-in-out;
+}
+
+@keyframes moveGradient {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1.2); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.5); }
+}
+
+/* --- Header & Navigation --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+/* --- Buttons --- */
+.nav-btn, .btn {
+    padding: 10px 20px;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--light-text);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    /* This transition makes all changes smooth */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);*/
+    border-color: transparent;
+}
+
+.nav-btn.primary, .btn.primary {
+    background-color: transparent;
+    border-color: transparent;
+    color: #fff;
+}
+
+/* --- HOVER EFFECTS (when the mouse is over the button) --- */
+
+/* Standard "Sign In" button hover */
+.nav-btn:hover {
+    
+    border-color: white;
+    transform: translateY(-3px); /* Lifts the button */
+    box-shadow: 0 0 30px rgba(106, 68, 255, 0.6);
+}
+
+/* Primary "Sign Up" button hover */
+.nav-btn.primary:hover {
+
+    transform: translateY(-3px); /* Lifts the button */
+    /* Adds a cool glow effect */
+    box-shadow: 0 0 30px rgba(106, 68, 255, 0.6);
+    border-color: white;
+}
+
+/* --- ACTIVE/ONCLICK EFFECTS (when you are clicking the button) --- */
+
+.nav-btn:active, .btn:active {
+    transform: translateY(0px); /* Pushes the button back down */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Resets shadow */
+    transition-duration: 0.1s; /* Makes the press down faster */
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: 0 20px;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+    max-width: 500px;
+    margin-bottom: 40px;
+}
+
+/* In your style.css file */
+
+.hero-visual {
+    width: 80%;
+    max-width: 600px;
+    height: 300px;
+    background-color: #000; /* Fallback color while video loads */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    
+    /* Important additions for video */
+    padding: 0;
+    overflow: hidden; /* This prevents the video from spilling out */
+    position: relative; /* Needed for correct video positioning */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-visual video {
+    width: 100%;
+    height: 100%;
+    /* This makes the video cover the entire div without distorting its aspect ratio */
+    object-fit: cover; 
+}
+
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: var(--light-text);
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Form Styles --- */
+#signin-view h2, #signup-view h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--light-text);
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.btn.full-width {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    background-color: rebeccapurple;
+}
+.btn.full-width:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.btn.full-width:active{
+    transform: translateY(0px); /* Pushes the button back down */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Resets shadow */
+    transition-duration: 0.1s; /* Makes the press down faster */
+}
+
+.form-switcher {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+}
+
+.form-switcher a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form-switcher a:hover {
+    text-decoration: underline;
+}
+
+/* --- Dashboard Styles --- */
+.dashboard-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    text-align: center;
+}
+.dashboard-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+#logout-btn {
+    margin-top: 30px;
+}
