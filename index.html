@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureIt - Index</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <header>
+        <h1 class="logo">SecureIt</h1>
+        <nav>
+            <button id="signin-btn" class="nav-btn">Sign In</button>
+            <button id="signup-btn" class="nav-btn primary">Sign Up</button>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <h2>Welcome to SecureIt</h2>
+        <p>This website allows you to convert your text/audio data into an image/video, which you can use to hide your data.</p>
+        <div class="hero-visual">
+            <video autoplay loop muted >
+                <source src="./Hero_Video/1761814287755.webm" type="video/webm">
+                <source src="./Hero_Video/Steganography_Animation_Generation.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </main>
+
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+
+            <div id="signin-view">
+                <h2>Welcome Back</h2>
+                    <div class="form-group">
+                        <label for="signin-email">Email</label>
+                        <input type="email" id="signin-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password">Password</label>
+                        <input type="password" id="signin-password" name="pass" required>
+                    </div>
+                    <button type="submit" class="btn primary full-width" onclick="signin()">Sign In</button>
+                <p class="form-switcher">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+            </div>
+            <script>
+                async function signin(){
+                    let email = document.getElementById("signin-email").value;
+                    let pass = document.getElementById("signin-password").value;
+                    const data = {email, pass};
+                    //let formid = document.getElementById("signin-form");
+                    try {
+                        const response = await fetch('/signin', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json',},
+                        body: JSON.stringify(data),
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok) { // Check if the response status is 200 (OK)
+                            alert(result.message); // Show success alert
+                            window.location.href = 'dashboard.html'; // Redirect to dashboard
+                        } else {
+                            alert(result.message); // Show error alert on the same page
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert(error);
+                    }
+                }
+            </script>
+
+            <div id="signup-view" class="hidden">
+                 <h2>Create Your Account</h2>
+                    <div class="form-group">
+                        <label for="signup-name">Name</label>
+                        <input type=text id="signup-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" name="pass" required>
+                    </div>
+                    <button type="submit" class="btn primary full-width" onclick="signup()">Create Account</button>
+                <p class="form-switcher">Already have an account? <a href="#" id="show-signin">Sign In</a></p>
+            </div>
+            <script>
+                async function signup(){
+                    let name = document.getElementById("signup-name").value;
+                    let email = document.getElementById("signup-email").value;
+                    let pass = document.getElementById("signup-password").value;
+                    const data = {name, email, pass};
+
+                    let formid = document.getElementById("signup-form");
+                    try {
+                        const response = await fetch('/signup', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json',},
+                        body: JSON.stringify(data),
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok) { // Check if the response status is 200 (OK)
+                            alert(result.message); // Show success alert
+                            window.location.href = 'dashboard.html'; // Redirect to dashboard
+                        } else {
+                            alert(result.message); // Show error alert on the same page
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('An unexpected error occurred in index');
+                    }
+                }
+            </script>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

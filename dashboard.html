@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SecureIt</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link 
+     rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+<body>
+    <script>
+        let [key, value] = document.cookie.split("=");
+    </script>
+    <div class="background-gradient"></div>
+    <header>
+        <h1 class="logo">SecureIt</h1>
+        <nav>
+            <span>Welcome, <script>document.write(value)</script>!
+ &emsp;&emsp;</span> 
+            <a href="/index.html" class="nav-btn">Logout</a>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <div class="mode-toggles">
+            <button class="mode-btn active" data-mode="encode"><i class="fas fa-code"></i> Encode</button>
+            <button class="mode-btn" data-mode="decode"><i class="fas fa-search"></i> Decode</button>
+        </div>
+
+        <div class="content-section active" id="encode-section">
+ 
+           <div class="card">
+                <h3 class="card-title">Encode Message</h3>
+                
+                <div class="form-group">
+                    <label><span class="step-number">1</span> Choose Carrier Type</label>
+                    <div class="mode-toggles" id="carrier-type-toggle">
+                        <button class="mode-btn active" data-carrier="image"><i class="fas fa-image"></i> Image</button>
+                        <button class="mode-btn" data-carrier="video"><i class="fas fa-film"></i> Video</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><span class="step-number">2</span> Provide Secret Message (Text or Audio)</label>
+                    <textarea id="secretMessage" rows="4" 
+ placeholder="Type your secret message..."></textarea>
+                    <div class="separator">OR</div>
+                    <input type="file" id="audioFile" class="file-input" accept="audio/*">
+                    <label for="audioFile" class="file-label">
+                        <i class="fas fa-microphone-alt"></i> <span id="audio-file-name">Upload an 
+ audio file...</span>
+                    </label>
+                </div>
+                <button class="btn primary full-width" id="encode-btn">Encode</button>
+                <div id="encode-result-area" class="result-area hidden">
+                    <h4>Resulting File:</h4>
+   
+                    <a href="#" id="download-btn" class="btn primary full-width hidden" download="encoded-file">
+                        <i class="fas fa-download"></i> Download File
+                    </a>
+       
+                 </div>
+            </div>
+        </div>
+
+        <div class="content-section" id="decode-section">
+            <div class="card">
+                <h3 class="card-title">Decode Message from a File</h3>
+                <div class="form-group">
+          
+                   <label><span class="step-number">1</span> Upload Image or Video File</label>
+                    <input type="file" id="uploadFile" class="file-input" accept="image/*,video/mp4, video/x-matroska, .mkv">
+                    <label for="uploadFile" class="file-label">
+                        <i class="fas fa-image"></i> <span id="upload-file-name">Choose an image or video...</span>
+         
+                   </label>
+                </div>
+                
+ <button class="btn primary full-width" id="decode-btn">Decode</button>
+                <div id="decode-result-area" class="result-area hidden">
+                    <h4>Decoded Message:</h4>
+                    <textarea id="decodedMessage" rows="4" readonly></textarea>
+                </div>
+            </div>
+     
+    </div>
+    </main>
+    
+    <script src="dashboard.js"></script>
+</body>
+</html>

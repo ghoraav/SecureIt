@@ -1,0 +1,171 @@
+:root {
+    --primary-color: #6a44ff; --dark-bg: #0b0b0f; --light-text: #e0e0e0;
+    --subtle-text: #a0a0a0; --card-bg: rgba(26, 26, 31, 0.7);
+    --border-color: #333338;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Inter', sans-serif; background-color: var(--dark-bg);
+    color: var(--light-text); overflow-x: hidden; position: relative; min-height: 100vh;
+}
+.background-gradient {
+    position: fixed; top: 50%; left: 50%; width: 100vw; height: 100vh;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at 20% 20%, #4f2db5, transparent 30%),
+                radial-gradient(circle at 80% 70%, #2d6ab5, transparent 30%);
+    filter: blur(100px); z-index: -1;
+    animation: moveGradient 15s infinite alternate ease-in-out;
+}
+@keyframes moveGradient {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1.2); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.5); }
+}
+header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; width: 100%; }
+.logo { font-size: 1.5rem; font-weight: 700; }
+.nav-btn, .mode-btn {
+    padding: 10px 20px; border: 1px solid var(--border-color); background-color: transparent;
+    color: var(--light-text); border-radius: 8px; cursor: pointer; font-size: 1rem;
+    font-weight: 500; transition: all 0.2s ease; text-decoration: none;
+}
+.mode-btn.active, .nav-btn:hover, .mode-btn:hover {
+    background-color: var(--primary-color); border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(106, 68, 255, 0.5);
+}
+.mode-btn i { margin-right: 8px; }
+.container { max-width: 700px; margin: 40px auto; padding: 0 20px; }
+.mode-toggles { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+.content-section { display: none; }
+.content-section.active { display: block; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.card {
+    background-color: var(--card-bg); padding: 30px; border-radius: 12px;
+    border: 1px solid var(--border-color); backdrop-filter: blur(10px);
+}
+.card-title { text-align: center; margin-bottom: 30px; font-size: 1.5rem; font-weight: 600; }
+.form-group { margin-bottom: 25px; }
+.form-group label { display: block; margin-bottom: 10px; font-size: 1rem; color: var(--subtle-text); }
+.step-number {
+    display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center;
+    border-radius: 50%; background-color: var(--primary-color); color: white;
+    font-weight: 700; margin-right: 10px;
+}
+textarea, .file-label {
+    width: 100%; padding: 12px; background-color: var(--dark-bg);
+    border: 1px solid var(--border-color); border-radius: 8px; color: var(--light-text);
+    font-size: 1rem; font-family: 'Inter', sans-serif;
+}
+textarea:focus { outline: none; border-color: var(--primary-color); }
+.separator { text-align: center; color: var(--subtle-text); margin: 15px 0; }
+.file-input { width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1; }
+.file-label { cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--subtle-text); transition: border-color 0.2s ease; }
+.file-label:hover { border-color: var(--primary-color); }
+.btn.primary.full-width {
+    width: 100%; padding: 15px; font-size: 1.1rem; font-weight: 600;
+    background-color: var(--primary-color); border: none; border-radius: 8px;
+    cursor: pointer; transition: all 0.2s ease; text-decoration: none; display: inline-block; text-align: center;
+}
+.btn.primary.full-width:hover { transform: translateY(-3px); box-shadow: 0 4px 20px rgba(106, 68, 255, 0.4); }
+.result-area { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+.result-area h4 { margin-bottom: 15px; color: var(--subtle-text); font-weight: 500; }
+#canvas-box-encode canvas, #canvas-box-decode canvas { max-width: 100%; border-radius: 8px; }
+.hidden { display: none; }
+/* START: dashboard.css */
+/* ... (all your existing CSS from :root { ... to .hidden { display: none; } ... ) ... */
+:root {
+    --primary-color: #6a44ff;
+--dark-bg: #0b0b0f; --light-text: #e0e0e0;
+    --subtle-text: #a0a0a0; --card-bg: rgba(26, 26, 31, 0.7);
+    --border-color: #333338;
+}
+* { margin: 0; padding: 0;
+box-sizing: border-box; }
+body {
+    font-family: 'Inter', sans-serif; background-color: var(--dark-bg);
+    color: var(--light-text); overflow-x: hidden; position: relative; min-height: 100vh;
+}
+.background-gradient {
+    position: fixed; top: 50%; left: 50%; width: 100vw; height: 100vh;
+    transform: translate(-50%, -50%);
+background: radial-gradient(circle at 20% 20%, #4f2db5, transparent 30%),
+                radial-gradient(circle at 80% 70%, #2d6ab5, transparent 30%);
+filter: blur(100px); z-index: -1;
+    animation: moveGradient 15s infinite alternate ease-in-out;
+}
+@keyframes moveGradient {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+}
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.5); }
+}
+header { display: flex; justify-content: space-between; align-items: center;
+padding: 20px 5%; width: 100%; }
+.logo { font-size: 1.5rem; font-weight: 700; }
+.nav-btn, .mode-btn {
+    padding: 10px 20px;
+border: 1px solid var(--border-color); background-color: transparent;
+    color: var(--light-text); border-radius: 8px; cursor: pointer; font-size: 1rem;
+    font-weight: 500; transition: all 0.2s ease;
+text-decoration: none;
+}
+.mode-btn.active, .nav-btn:hover, .mode-btn:hover {
+    background-color: var(--primary-color); border-color: var(--primary-color);
+box-shadow: 0 0 15px rgba(106, 68, 255, 0.5);
+}
+.mode-btn i { margin-right: 8px; }
+.container { max-width: 700px; margin: 40px auto;
+padding: 0 20px; }
+.mode-toggles { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+.content-section { display: none;
+}
+.content-section.active { display: block; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1;
+} }
+.card {
+    background-color: var(--card-bg); padding: 30px; border-radius: 12px;
+    border: 1px solid var(--border-color); backdrop-filter: blur(10px);
+}
+.card-title { text-align: center; margin-bottom: 30px; font-size: 1.5rem; font-weight: 600; }
+.form-group { margin-bottom: 25px; }
+.form-group label { display: block;
+margin-bottom: 10px; font-size: 1rem; color: var(--subtle-text); }
+.step-number {
+    display: inline-block; width: 24px; height: 24px; line-height: 24px;
+text-align: center;
+    border-radius: 50%; background-color: var(--primary-color); color: white;
+    font-weight: 700; margin-right: 10px;
+}
+textarea, .file-label {
+    width: 100%;
+padding: 12px; background-color: var(--dark-bg);
+    border: 1px solid var(--border-color); border-radius: 8px; color: var(--light-text);
+    font-size: 1rem; font-family: 'Inter', sans-serif;
+}
+textarea:focus { outline: none; border-color: var(--primary-color); }
+.separator { text-align: center; color: var(--subtle-text); margin: 15px 0; }
+.file-input { width: 0.1px;
+height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1; }
+.file-label { cursor: pointer; display: flex; align-items: center; gap: 10px;
+color: var(--subtle-text); transition: border-color 0.2s ease; }
+.file-label:hover { border-color: var(--primary-color); }
+.btn.primary.full-width {
+    width: 100%; padding: 15px;
+font-size: 1.1rem; font-weight: 600;
+    background-color: var(--primary-color); border: none; border-radius: 8px;
+    cursor: pointer; transition: all 0.2s ease; text-decoration: none; display: inline-block;
+text-align: center;
+}
+.btn.primary.full-width:hover { transform: translateY(-3px); box-shadow: 0 4px 20px rgba(106, 68, 255, 0.4); }
+.result-area { margin-top: 30px; padding-top: 20px;
+border-top: 1px solid var(--border-color); }
+.result-area h4 { margin-bottom: 15px; color: var(--subtle-text); font-weight: 500; }
+#canvas-box-encode canvas, #canvas-box-decode canvas { max-width: 100%;
+border-radius: 8px; }
+.hidden { display: none; }
+
+/* --- NEW CSS --- */
+/* This ensures videos in the preview boxes are responsive and styled like the images */
+#result-preview-box video, 
+#upload-preview-box video {
+    max-width: 100%;
+    border-radius: 8px;
+}
+/* END: dashboard.css */
