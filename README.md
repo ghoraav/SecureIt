@@ -1,2 +1,4 @@
 # SecureIt
-Image Steganography Website
+Image and Video Steganography Website
+
+view the attached video above.
